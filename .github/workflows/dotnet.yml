@@ -16,11 +16,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: Setup .NET 8
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
+    - name: Build - .NET8
+      run: dotnet build EJ2CoreSampleBrowser_NET8.csproj
+    - name: Build - .NET9
+      run: dotnet build EJ2CoreSampleBrowser_NET9.csproj
